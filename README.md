@@ -12,46 +12,61 @@
 * Express
 
 ## Setup
-* Jalankan <code>run.bat</code> atau <code>run.sh</code> yang ada di folder bin.
-* Buka local website yang dihasilkan di web browser.
+### Without Docker
+1. Clone this repository.
+2. Open terminal in repository directory.
+3. Install dependencies by running <code>npm install express mariadb</code> on terminal.
+4. Change MariaDB credentials on <code>config/db.config.js</code> if needed.
+5. Setup MariaDB database by running <code>setup.sql</code> on MariaDB.
+6. Insert dummy data to database by running <code>init_data.sql</code> on MariaDB (optional).
+7. Run <code>npm start</code>.
+8. Send requests to localhost:5000.
+### With Docker (status: untested, author's PC doesn't support Docker)
+1. Clone this repository.
+2. Open terminal in repository directory.
+3. Run <code>docker-compose up</code>
+4. Send requests to localhost:5000.
 
 ## Endpoints
 ### Dorayaki
 * <code>POST/dorayaki</code>
-  * creates dorayaki
-  * send dorayaki attributes as json in request body
+  * Creates dorayaki
+  * Send dorayaki attributes as json in request body
 * <code>GET/dorayaki</code>
-  * reads dorayakis
-  * you can filter dorayaki by specifying attributes in query params i.e. <code>GET/dorayaki?id_dorayaki=1&rasa=pempek</code>
+  * Reads dorayakis
+  * You can filter dorayaki by specifying attributes in query params i.e. <code>GET/dorayaki?id_dorayaki=1&rasa=pempek</code>
+  * Filter attributes are id_dorayaki and rasa
 * <code>PATCH/dorayaki</code>
-  * updates existing dorayaki by id_dorayaki
-  * send dorayaki attributes as json in request body
+  * Updates existing dorayaki by id_dorayaki
+  * Send dorayaki attributes as json in request body
 * <code>DELETE/dorayaki</code>
-  * deletes dorayaki
-  * put attributes in query params to specify deleted dorayaki i.e. <code>DELETE/dorayaki?id_dorayaki=1</code>
+  * Deletes dorayaki by id_dorayaki
+  * Put id_dorayaki in query params to specify deleted dorayaki i.e. <code>DELETE/dorayaki?id_dorayaki=1</code>
 ### Toko
 * <code>POST/toko</code>
-  * creates toko
-  * send toko attributes as json in request body
+  * Creates toko
+  * Send toko attributes as json in request body
 * <code>GET/toko</code>
-  * reads tokos
-  * you can filter toko by specifying attributes in query params i.e. <code>GET/toko?id_toko=1&provinsi=DIY</code>
+  * Reads tokos
+  * You can filter toko by specifying attributes in query params i.e. <code>GET/toko?id_toko=1&provinsi=DIY</code>
+  * Filter attributes are id_toko, nama, jalan, kecamatan, and provinsi.
 * <code>PATCH/toko</code>
-  * updates existing toko by id_toko
-  * send toko attributes as json in request body
+  * Updates existing toko by id_toko
+  * Send toko attributes as json in request body
 * <code>DELETE/toko</code>
-  * deletes toko
-  * put attributes in query params to specify deleted toko i.e. <code>DELETE/toko?id_toko=1</code>
+  * Deletes toko by id_toko
+  * Put id_toko in query params to specify deleted toko i.e. <code>DELETE/toko?id_toko=1</code>
 ### Stok Toko
 * <code>POST/stok_toko</code>
-  * creates stok toko
-  * send stok toko attributes as json in request body
+  * Creates stok toko
+  * Send stok toko attributes as json in request body
 * <code>GET/stok_toko</code>
-  * reads stok toko
-  * you can filter stok toko by specifying attributes in query params i.e. <code>GET/stok_toko?id_dorayaki=1&id_toko=2</code>
-* <code>PATCH/toko</code>
-  * updates existing stok toko by id_dorayaki and id_toko 
-  * send stok toko attributes as json in request body
-* <code>DELETE/dorayaki</code>
-  * deletes stok toko
-  * put attributes in query params to specify deleted stok toko i.e. <code>DELETE/stok_toko?id_dorayaki=1&id_toko=2</code>
+  * Reads stok toko
+  * You can filter stok toko by specifying attributes in query params i.e. <code>GET/stok_toko?id_dorayaki=1&id_toko=2</code>
+  * Filter attributes are id_dorayaki and id_toko
+* <code>PATCH/stok_toko</code>
+  * Updates existing stok toko by id_dorayaki and id_toko 
+  * Send stok toko attributes as json in request body
+* <code>DELETE/stok_toko</code>
+  * Deletes stok toko by id_dorayaki and id_toko
+  * Put attributes in query params to specify deleted stok toko i.e. <code>DELETE/stok_toko?id_dorayaki=1&id_toko=2</code>
